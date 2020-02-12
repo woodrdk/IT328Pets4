@@ -13,7 +13,7 @@ class Pet
         $this->_color = "red";
     }*/
     // default constructor
-    function __construct($type, $name = "Fido", $color = "Blue")
+    function __construct( $name = "Fido", $color = "Blue", $type = "animal")
     {
         $this->_name = $name;
         $this->_color = $color;
