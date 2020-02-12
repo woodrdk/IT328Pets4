@@ -61,6 +61,9 @@ $f3->route('GET|POST /order',function ($f3){
             else if($animal == "cat"){
                 $_SESSION['animal'] = new Cat();
             }
+            else if($animal == "bird"){
+                $_SESSION['animal'] = new Bird();
+            }
             else{
                 $_SESSION['animal'] = new Pet();
             }
