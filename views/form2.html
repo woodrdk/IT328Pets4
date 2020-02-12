@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pets</title>
+</head>
+<body>
+<form action="#" method="post">
+    <check if="{{ isset(@errors['color']) }}">
+        <p>{{ @errors['color'] }}</p>
+    </check>
+    <label for="color">Color</label>
+    <select type="text" name="color" id="color">
+        <option value="">Select</option>
+        <repeat group="{{ @colors }}" value="{{ @colorOption }}">
+            <option value="{{ @colorOption }}">{{ ucfirst(@colorOption) }}</option>
+        </repeat>
+    </select>
+<button type="submit">Next>></button>
+</form>
+</body>
+</html>
