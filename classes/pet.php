@@ -25,6 +25,16 @@ class Pet
         return $this->_name;
     }
 
+    function setType($type)
+    {
+        $this->_type = $type;
+    }
+
+    function getType()
+    {
+        return $this->_type;
+    }
+
     function setName($name)
     {
         $this->_name = $name;

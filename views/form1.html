@@ -6,8 +6,8 @@
 </head>
 <body>
 <form action="#" method="post">
-<label for="animal">Animal</label>
-    <input type="text" name="animal" id="animal">
+<label for="animal">Animal Type</label>
+    <input type="text" name="animal" id="animal" value="{{ @type }}">
     <check if="{{ isset(@errors['animal']) }}">
         <span>{{ @errors['animal'] }}</span>
     </check>

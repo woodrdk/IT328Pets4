@@ -6,6 +6,8 @@
 </head>
 <body>
 <h1> Result page</h1>
-<p> Thank you for ordering a {{ @SESSION.animal->getColor() }} {{ @SESSION.animal->getName() }}. {{@SESSION.animal->talk()}}.  </p>
+<p> Thank you for ordering a {{ @SESSION.animal->getColor() }} {{ @SESSION.animal->getType() }} named
+    {{ @SESSION.animal->getName() }} . </p>
+<p>{{@SESSION.animal->talk()}}.  </p>
 </body>
 </html>

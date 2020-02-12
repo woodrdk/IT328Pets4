@@ -67,10 +67,12 @@ $f3->route('GET|POST /order',function ($f3){
             else{
                 $_SESSION['animal'] = new Pet();
             }
+            $_SESSION['animal']->setType($animal);
             $f3->reroute('/order2');
         }
         else {
             $f3->set("errors['animal']", "Please enter an animal");
+            $f3->set('type', $animal);
         }
     }
     $view = new Template();//template object
@@ -82,11 +84,17 @@ $f3->route('GET|POST /order2',function ($f3)
 {
     if(isset($_POST['color'])) {
         $color = $_POST['color'];
+        $name = $_POST['name'];
+        $f3->set('name', $name);
+        $f3->set('color', $color);
         if(validColor($color)) {
-            $_SESSION['animal']->setColor($color);
-            $view = new Template();//template object
-            echo $view-> render('views/results.html');
-            return;
+            if(validString($name)) {
+                $_SESSION['animal']->setColor($color);
+                $_SESSION['animal']->setName($name);
+                $view = new Template();//template object
+                echo $view-> render('views/results.html');
+                return;
+            }
         }
         else {
             $f3->set("errors['color']", "Please select a valid color");
