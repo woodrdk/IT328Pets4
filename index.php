@@ -3,11 +3,14 @@
 ini_set("display_errors", 1);
 error_reporting(E_ALL);
 
-//session start() wont work if there is space or any echo statement after php or before php
-session_start();
+
 
 require "vendor/autoload.php";
 require_once ('model/validation-functions.php');
+
+//session start() wont work if there is space or any echo statement after php or before php
+session_start();
+
 $f3 = Base::instance();
 $f3->set('DEBUG', 3);
 $f3->set('colors', array('pink', 'black', 'brown', 'white'));
@@ -50,10 +53,20 @@ $f3->route('GET /@item', function($f3, $params) {
 $f3->route('GET|POST /order',function ($f3){
     $_SESSION = [];
 
+
     if(isset($_POST['animal'])) {
-        $animal = $_POST['animal'];
+        $animal = strtolower( $_POST['animal']);
         if(validString($animal)) {
-            $_SESSION['animal'] = $animal;
+            if($animal == "dog"){
+                $_SESSION['animal'] = new Dog();
+            }
+            else if($animal == "cat"){
+                $_SESSION['animal'] = new Cat();
+            }
+            else{
+                $_SESSION['animal'] = new Pet();
+            }
+
             $f3->reroute('/order2');
         }
         else {
@@ -72,7 +85,7 @@ $f3->route('GET|POST /order2',function ($f3)
         if(validColor($color)) {
             $_SESSION['color'] = $color;
             $view = new Template();//template object
-            echo $view-> render('views/results.html');
+            echo $view->render('views/results.html');
             return;
         }
         else {
@@ -80,7 +93,7 @@ $f3->route('GET|POST /order2',function ($f3)
         }
     }
     $view = new Template();//template object
-    echo $view-> render('views/form2.html');//use it to render the main page
+    echo $view->render('views/form2.html');//use it to render the main page
 
 });
 
